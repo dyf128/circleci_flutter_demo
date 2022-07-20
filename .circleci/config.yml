@@ -18,7 +18,20 @@ commands:
                 description: |
                     Accepts all Android SDK licenses. This command is typically not necessary to execute, since the CircleCI machine/convenience images ship with all licenses accepted. This command will add approximately 10 seconds to the build time.
                 name: Accept Android Licenses
-                shell: /bin/bash sdkmanager --list 
+                shell: /bin/bash -e
+
+    prepare_sdkmanager:
+        description: Accept SDK license and update SDK
+        steps:
+          - run:
+              name: Accept SDK license
+              command: sudo yes | sdkmanager --list
+          - run:
+              name: Accept SDK license
+              command: sudo yes | sdkmanager --licenses 2>&1 >/dev/null || true
+          - run:
+              name: Update SDK
+              command: sudo yes | sdkmanager --update 2>&1 >/dev/null || true
 
 jobs:
   integration_test_android:
@@ -29,6 +42,7 @@ jobs:
     steps:
       - checkout
       - accept-licenses
+      - prepare_sdkmanager
       - flutter-orb/install_sdk_and_pub:
           cache-version: machine
           flutter_version: 3.0.3
