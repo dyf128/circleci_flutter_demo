@@ -29,13 +29,7 @@ commands:
               command: ls /opt/android/sdk/platforms
           - run:
               name: list build-tools
-              command: ls /opt/android/sdk/build-tools/
-          - run:
-              name: install sdk
-              command: yes | sdkmanager "build-tools;30.0.3"
-          - run:
-              name: install sdk
-              command: yes | sdkmanager "build-tools;33.0.0"        
+              command: ls /opt/android/sdk/build-tools/       
 
 jobs:
   integration_test_android:
