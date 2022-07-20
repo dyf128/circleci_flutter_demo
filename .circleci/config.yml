@@ -26,7 +26,7 @@ commands:
         steps:
           - run:
               name: list platforms
-              command: yes | ls /opt/android/sdk/build-tools
+              command: ls /opt/android/sdk/platforms
           - run:
               name: install sdk
               command: yes | sdkmanager install "platform-tools" "platforms;android-30" 
