@@ -25,13 +25,13 @@ commands:
         steps:
           - run:
               name: install sdk
-              command: sdkmanager "platform-tools" "platforms;android-30" 
+              command: yes | sdkmanager install "platform-tools" "platforms;android-30" 
           - run:
               name: install sdk
-              command: sdkmanager "platform-tools" "platforms;android-31" 
+              command: yes | sdkmanager install "platform-tools" "platforms;android-31" 
           - run:
               name: install sdk
-              command: sdkmanager "platform-tools" "platforms;android-33"     
+              command: yes | sdkmanager install "platform-tools" "platforms;android-33"     
           
 
 jobs:
