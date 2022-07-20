@@ -19,10 +19,14 @@ commands:
                     Accepts all Android SDK licenses. This command is typically not necessary to execute, since the CircleCI machine/convenience images ship with all licenses accepted. This command will add approximately 10 seconds to the build time.
                 name: Accept Android Licenses
                 shell: /bin/bash -e
+  
 
     prepare_sdkmanager:
         description: Accept SDK license and update SDK
         steps:
+          - run:
+              name: list platforms
+              command: yes | ls /opt/android/sdk/build-tools
           - run:
               name: install sdk
               command: yes | sdkmanager install "platform-tools" "platforms;android-30" 
