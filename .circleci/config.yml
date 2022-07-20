@@ -24,14 +24,15 @@ commands:
         description: Accept SDK license and update SDK
         steps:
           - run:
-              name: Accept SDK license
+              name: SDK list
               command: sudo yes | sdkmanager --list
           - run:
-              name: Accept SDK license
-              command: sudo yes | sdkmanager --licenses 2>&1 >/dev/null || true
+              name: install sdk
+              command: sudo yes | sdkmanager "platform-tools" "platforms;android-30"
           - run:
-              name: Update SDK
-              command: sudo yes | sdkmanager --update 2>&1 >/dev/null || true
+              name: install sdk
+              command: sudo yes | sdkmanager "platform-tools" "platforms;android-31"
+          
 
 jobs:
   integration_test_android:
