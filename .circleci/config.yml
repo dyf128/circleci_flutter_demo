@@ -25,13 +25,13 @@ commands:
         steps:
           - run:
               name: install sdk
-              command: sudo yes | sdkmanager "platform-tools" "platforms;android-30" "build-tools;30.0.0"
+              command: sdkmanager "platform-tools" "platforms;android-30" 
           - run:
               name: install sdk
-              command: sudo yes | sdkmanager "platform-tools" "platforms;android-31" "build-tools;31.0.0"
+              command: sdkmanager "platform-tools" "platforms;android-31" 
           - run:
               name: install sdk
-              command: sudo yes | sdkmanager "platform-tools" "platforms;android-33" "build-tools;33.0.0"    
+              command: sdkmanager "platform-tools" "platforms;android-33"     
           
 
 jobs:
@@ -42,7 +42,7 @@ jobs:
       tag: 2022.03.1
     steps:
       - checkout
-      - accept-licenses
+      
       - prepare_sdkmanager
       - flutter-orb/install_sdk_and_pub:
           cache-version: machine
@@ -50,7 +50,7 @@ jobs:
       - run: flutter doctor
       - run: flutter build apk --release
       - store_artifacts:
-          path: build/app/outputs/flutter-apk/appk-release.apk
+          path: build/app/outputs/flutter-apk/apk-release.apk
 
 
 workflows:
