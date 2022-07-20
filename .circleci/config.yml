@@ -29,6 +29,14 @@ jobs:
     steps:
       - checkout
       - accept-licenses
+      - android/create-avd:
+          avd-name: myavd
+          system-image: system-images;android-30;default;x86
+          install: true
+      - android/create-avd:
+          avd-name: myavd
+          system-image: system-images;android-31;default;x86
+          install: true
       - flutter-orb/install_sdk_and_pub:
           cache-version: machine
           flutter_version: 3.0.3
