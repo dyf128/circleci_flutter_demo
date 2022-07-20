@@ -6,6 +6,20 @@ orbs:
   ruby: circleci/ruby@1.8.0
   macos: circleci/macos@2.2.0
 
+commands:
+    accept-licenses:
+        description: |
+            Accept all Android SDK Manager licenses
+        steps:
+            - run:
+                command: |
+                    yes | sdkmanager --licenses
+                    yes | sdkmanager --update
+                description: |
+                    Accepts all Android SDK licenses. This command is typically not necessary to execute, since the CircleCI machine/convenience images ship with all licenses accepted. This command will add approximately 10 seconds to the build time.
+                name: Accept Android Licenses
+                shell: /bin/bash -e
+
 jobs:
   integration_test_android:
     executor:
@@ -14,6 +28,7 @@ jobs:
       tag: 2022.03.1
     steps:
       - checkout
+      - accept-licenses
       - flutter-orb/install_sdk_and_pub:
           cache-version: machine
           flutter_version: 3.0.3
